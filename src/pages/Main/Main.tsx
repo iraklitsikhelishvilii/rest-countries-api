@@ -6,7 +6,15 @@ import { FetchData } from "../../services/api";
 
 function Main() {
   const navigation = useNavigate();
-  const [data, setdata] = useState([]);
+  const [data, setdata] = useState<
+    {
+      name: { common: string };
+      region: string;
+      population: number;
+      capital?: string;
+      flags: { svg: string };
+    }[]
+  >([]);
   const [value, setvalue] = useState("");
   const [region, setregion] = useState(false);
 
