@@ -1,25 +1,18 @@
-import { useNavigate } from "react-router";
 import search_icon from "../../assets/images/search.svg";
 import arrow_img from "../../assets/images/expand-more.svg";
 import { useEffect, useState } from "react";
 import { FetchData } from "../../services/api";
-
 import searchwhite_icon from "../../assets/images/Shape (1).svg";
 import arrow2_icon from "../../assets/images/Group 2.svg";
 import { useMainStates } from "../../store";
 import Header from "../../components/__molecules/header/Header";
-interface MainStates {
-  name: { common: string };
-  region: string;
-  population: number;
-  capital?: string;
-  flags: { svg: string };
-  languages: { [key: string]: string };
-  lang: string;
-}
+import { CountryType } from "../../interfaces/Interfaces";
+import Input_div from "../../components/__molecules/input_div/Input_div";
+import Region_main from "../../components/__molecules/region_main/Region_main";
+import Countries_div from "../../components/__molecules/countries_div/Countries_div";
+
 function Main() {
-  const navigation = useNavigate();
-  const [data, setdata] = useState<MainStates[]>([]);
+  const [data, setdata] = useState<CountryType[]>([]);
   const [value, setvalue] = useState("");
   const [region, setregion] = useState(false);
 
@@ -28,7 +21,7 @@ function Main() {
     FetchData(setdata);
   }, []);
 
-  const TakeValue = (e: any) => {
+  const TakeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setvalue(e.target.value);
   };
   let SearchArray = data.filter((item) =>
@@ -90,152 +83,22 @@ function Main() {
       >
         <div className="max-w-[1280px] w-[100%] flex flex-col   mt-[50px]  ">
           <div className=" w-[100%] flex justify-between gap-[30px] max-[600px]:flex-col">
-            <div
-              className={`${
-                darkmode ? "bg-[#2B3844] " : ""
-              } max-w-[480px] w-[100%] h-[56px] shadow-[0px_2px_9px_0px_#0000000E] flex items-center justify-center pl-[32px] rounded-[5px]  max-[600px]:max-w-[100%]`}
-            >
-              <div className="flex w-[100%]  gap-[24px] ">
-                <img src={search} alt="" />
-                <input
-                  onChange={TakeValue}
-                  className={` outline-none text-[14px] font-[600]  max-[600px]:text-[12px] ${
-                    darkmode ? "text-[#fff]" : "text-[#848484]"
-                  }`}
-                  type="text"
-                  placeholder="Search for a country…"
-                />
-              </div>
-            </div>
-            <div
-              onClick={RegionClick}
-              className={`${
-                darkmode ? "bg-[#2B3844]" : ""
-              } relative flex max-w-[200px] w-[100%] h-[56px]  items-center justify-between  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] px-[23px]`}
-            >
-              <p
-                className={`text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
-                  darkmode ? "text-[#fff]" : " text-[#111517]"
-                }`}
-              >
-                Filter by Region
-              </p>
-              <img
-                className={`transition-transform duration-400 ${
-                  region ? "rotate-180" : "rotate-0"
-                }`}
-                src={arrow}
-                alt=""
-              />
-              <div
-                className={`gap-[8px] flex flex-col max-w-[200px] w-[100%] absolute 
-                  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] pl-[24px] top-[60px] left-0 
-                  ${darkmode ? "bg-[#2B3844]" : "bg-[#fff]"}  
-                  ${region ? "h-auto py-[16px] " : "h-[0px] py-[0px]"} `}
-              >
-                {region && (
-                  <>
-                    <p
-                      onClick={AfricaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Africa
-                    </p>
-                    <p
-                      onClick={AmericaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      America
-                    </p>
-                    <p
-                      onClick={AsiaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Asia
-                    </p>
-                    <p
-                      onClick={EuropeClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Europe
-                    </p>
-                    <p
-                      onClick={OceaniaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Oceania
-                    </p>
-                  </>
-                )}
-              </div>
-            </div>
+            <Input_div search={search} TakeValue={TakeValue} />
+            <Region_main
+              region={region}
+              AfricaClick={AfricaClick}
+              darkmode={darkmode}
+              AmericaClick={AmericaClick}
+              AsiaClick={AsiaClick}
+              EuropeClick={EuropeClick}
+              OceaniaClick={OceaniaClick}
+              RegionClick={RegionClick}
+              arrow={arrow}
+            />
           </div>
           <div className="max-w-[1280px] w-[100%] gap-[70px]   mt-[50px] flex flex-wrap justify-center">
             {information.map((country, key) => (
-              <div
-                onClick={() =>
-                  navigation(`/country/${country.name.common}`, {
-                    state: country,
-                  })
-                }
-                key={key}
-                className={`flex flex-col  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] ${
-                  darkmode ? "bg-[#2B3844]" : "bg-[#fff]"
-                }`}
-              >
-                <div className="w-[267px] h-[160px]">
-                  <img
-                    src={country.flags.svg}
-                    className="w-[100%] h-[100%] bg-cover "
-                    alt=""
-                  />
-                </div>
-                <div className="pt-[24px] pl-[24px]">
-                  <p
-                    className={`text-[18px] leading-[25px] font-[800] max-w-[235px] ${
-                      darkmode ? "text-[#fff]" : "text-[#111517]"
-                    }`}
-                  >
-                    {country.name.common}
-                  </p>
-                  <div className="flex flex-col mt-[16px] gap-[8px] mb-[46px] max-w-[235px]">
-                    <p
-                      className={`text-[14px] leading-[16px] font-[600] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Population:
-                      <span className="font-[300]">{country.population}</span>
-                    </p>
-                    <p
-                      className={`text-[14px] leading-[16px] font-[600] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Region:
-                      <span className="font-[300]">{country.region}</span>
-                    </p>
-                    <p
-                      className={`text-[14px] leading-[16px] font-[600] ${
-                        darkmode ? "text-[#fff]" : "text-[#111517]"
-                      }`}
-                    >
-                      Capital:
-                      <span className="font-[300]">{country.capital}</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <Countries_div country={country} key={key} darkmode={darkmode} />
             ))}
           </div>
         </div>

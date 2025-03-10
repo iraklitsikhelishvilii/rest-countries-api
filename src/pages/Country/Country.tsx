@@ -3,20 +3,8 @@ import arrow_icon from "../../assets/images/Shape.svg";
 import { useMainStates } from "../../store";
 import Header from "../../components/__molecules/header/Header";
 import arrowwhite_icon from "../../assets/images/call-made.svg";
+import { CountryType } from "../../interfaces/Interfaces";
 
-interface CountryType {
-  flags: { svg: string };
-  name: { common: string };
-  altSpellings: string[];
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string[];
-  tld: string[];
-  currencies: { [key: string]: { name: string } };
-  languages: { [key: string]: string };
-  borders?: string[];
-}
 function Country() {
   const location = useLocation();
   const country = location.state as CountryType;
