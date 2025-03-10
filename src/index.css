@@ -1,1 +1,4 @@
 @import "tailwindcss";
+.lengthen_div {
+  transition: all 1s ease-in-out;
+}
