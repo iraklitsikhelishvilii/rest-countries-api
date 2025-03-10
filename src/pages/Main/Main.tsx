@@ -96,7 +96,11 @@ function Main() {
               arrow={arrow}
             />
           </div>
-          <div className="max-w-[1280px] w-[100%] gap-[70px]   mt-[50px] flex flex-wrap justify-center">
+          <div
+            className={`max-w-[1280px] w-[100%] gap-[70px]   mt-[50px] flex flex-wrap  ${
+              SearchArray.length < 4 ? "justify-start" : "justify-center"
+            }`}
+          >
             {information.map((country, key) => (
               <Countries_div country={country} key={key} darkmode={darkmode} />
             ))}
