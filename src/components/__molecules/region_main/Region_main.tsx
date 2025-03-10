@@ -20,7 +20,7 @@ function Region_main({
       onClick={RegionClick}
       className={`${
         darkmode ? "bg-[#2B3844]" : ""
-      } relative flex max-w-[200px] w-[100%] h-[56px]  items-center justify-between  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] px-[23px]`}
+      } cursor-pointer relative flex max-w-[200px] w-[100%] h-[56px]  items-center justify-between  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] px-[23px]`}
     >
       <p
         className={`text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${

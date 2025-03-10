@@ -21,7 +21,7 @@ function Countries_div({ country, key, darkmode }: CountriesDivStates) {
         })
       }
       key={key}
-      className={`flex flex-col  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] ${
+      className={` cursor-pointer flex flex-col  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] ${
         darkmode ? "bg-[#2B3844]" : "bg-[#fff]"
       }`}
     >

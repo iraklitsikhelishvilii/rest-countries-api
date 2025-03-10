@@ -22,14 +22,14 @@ function Country() {
         <div className={` w-[100%] flex items-center justify-center px-[20px]`}>
           <div className="max-w-[1280px] w-[100%] flex flex-col mt-[80px] gap-[80px]">
             <Link
-              className={` w-[136px] h-[40px] flex items-center justify-between px-[32px] rounded-[6px] ${
+              className={`shadow-[0px_2px_9px_0px_#0000000E] w-[136px] h-[40px] flex items-center justify-between px-[32px] rounded-[6px] ${
                 darkmode ? "bg-[#2B3844]" : "bg-[#fff]"
               }`}
               to={"/"}
             >
               <img src={arrow} alt="" />
               <p
-                className={`text-[16px] leading-[20px] font-[300] ${
+                className={`text-[16px] leading-[20px] font-[300]   ${
                   darkmode ? "text-[#fff]" : "text-[#111517]"
                 }`}
               >

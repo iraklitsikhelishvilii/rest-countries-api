@@ -16,7 +16,7 @@ function Header() {
     <div
       className={`${
         darkmode ? "bg-[#2B3844]" : "bg-[#FFFFFF]"
-      } cursor-pointer shadow-[0px_2px_4px_0px_#0000000E] w-[100%] h-[80px] flex items-center justify-center px-[20px]`}
+      } shadow-[0px_2px_4px_0px_#0000000E] w-[100%] h-[80px] flex items-center justify-center px-[20px]`}
     >
       <div className=" max-w-[1280px] w-[100%] flex justify-between items-center">
         <h1
@@ -28,7 +28,7 @@ function Header() {
         </h1>
         <div
           onClick={DarkModeClick}
-          className="flex items-center justify-center gap-[8px]"
+          className="cursor-pointer  flex items-center justify-center gap-[8px]"
         >
           <p
             className={`${
