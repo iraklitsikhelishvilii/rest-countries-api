@@ -8,19 +8,18 @@ import searchwhite_icon from "../../assets/images/Shape (1).svg";
 import arrow2_icon from "../../assets/images/Group 2.svg";
 import { useMainStates } from "../../store";
 import Header from "../../components/__molecules/header/Header";
+interface MainStates {
+  name: { common: string };
+  region: string;
+  population: number;
+  capital?: string;
+  flags: { svg: string };
+  languages: { [key: string]: string };
+  lang: string;
+}
 function Main() {
   const navigation = useNavigate();
-  const [data, setdata] = useState<
-    {
-      name: { common: string };
-      region: string;
-      population: number;
-      capital?: string;
-      flags: { svg: string };
-      languages: { [key: string]: string };
-      lang: string;
-    }[]
-  >([]);
+  const [data, setdata] = useState<MainStates[]>([]);
   const [value, setvalue] = useState("");
   const [region, setregion] = useState(false);
 
@@ -203,7 +202,7 @@ function Main() {
                 </div>
                 <div className="pt-[24px] pl-[24px]">
                   <p
-                    className={`text-[18px] leading-[25px] font-[800] ${
+                    className={`text-[18px] leading-[25px] font-[800] max-w-[235px] ${
                       darkmode ? "text-[#fff]" : "text-[#111517]"
                     }`}
                   >

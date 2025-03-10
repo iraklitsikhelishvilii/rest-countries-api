@@ -4,12 +4,22 @@ import { useMainStates } from "../../store";
 import Header from "../../components/__molecules/header/Header";
 import arrowwhite_icon from "../../assets/images/call-made.svg";
 
-interface Lang {
-  lang: string;
+interface CountryType {
+  flags: { svg: string };
+  name: { common: string };
+  altSpellings: string[];
+  population: number;
+  region: string;
+  subregion: string;
+  capital: string[];
+  tld: string[];
+  currencies: { [key: string]: { name: string } };
+  languages: { [key: string]: string };
+  borders?: string[];
 }
 function Country() {
-  const location = useLocation<Lang>();
-  const country = location.state;
+  const location = useLocation();
+  const country = location.state as CountryType;
   let darkmode = useMainStates((state) => state.darkmode);
   let arrow = darkmode ? arrowwhite_icon : arrow_icon;
 
@@ -115,7 +125,9 @@ function Country() {
                     >
                       Currencies:
                       <span className="font-[300]">
-                        {country.currencies.name}
+                        {Object.values(country.currencies)
+                          .map((currency) => currency.name)
+                          .join(", ")}
                       </span>
                     </p>
                     <div className="flex">
@@ -143,20 +155,27 @@ function Country() {
                   </div>
                 </div>
                 <div className="w-[100%] flex mt-[70px]">
-                  <p
-                    className={`text-[16px] leading-[32px] font-[600] ${
-                      darkmode ? "text-[#fff]" : "text-[#111517]`}>"
-                    }`}
-                  >
-                    Border Countries:
-                  </p>
-                  <div className="flex gap-[5px]">
+                  {country.borders && country.borders.length > 0 && (
+                    <p
+                      className={`text-[16px] leading-[32px] font-[600] ${
+                        darkmode ? "text-[#fff]" : "text-[#111517]`}>"
+                      }`}
+                    >
+                      Border Countries:
+                    </p>
+                  )}
+                  <div className="flex gap-[5px] flex-wrap">
                     {country.borders &&
                       country.borders.length > 0 &&
                       country.borders.map((border, key) => (
-                        <div key={key}>
+                        <div
+                          className={`w-[96px] h-[28px] flex items-center justify-center border-[0px_0px_4px_1px_#0000001B] ${
+                            darkmode ? "bg-[#2B3844]" : "bg-[#fff]"
+                          }`}
+                          key={key}
+                        >
                           <p
-                            className={`text-[16px] leading-[32px] font-[300]  ${
+                            className={`text-[14px] leading-[32px] font-[300]  ${
                               darkmode ? "text-[#fff]" : "text-[#111517]"
                             }`}
                           >
