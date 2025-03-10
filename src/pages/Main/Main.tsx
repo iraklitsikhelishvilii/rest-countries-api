@@ -86,20 +86,20 @@ function Main() {
       <div
         className={`${
           darkmode ? "bg-[#202C36]" : ""
-        } flex  justify-center w-[100%] min-h-[100vh]`}
+        } flex  justify-center w-[100%] min-h-[100vh] px-[20px]`}
       >
         <div className="max-w-[1280px] w-[100%] flex flex-col   mt-[50px]  ">
-          <div className=" w-[100%] flex justify-between">
+          <div className=" w-[100%] flex justify-between gap-[30px] max-[600px]:flex-col">
             <div
               className={`${
                 darkmode ? "bg-[#2B3844] " : ""
-              } max-w-[480px] w-[100%] h-[56px] shadow-[0px_2px_9px_0px_#0000000E] flex items-center justify-center pl-[32px] rounded-[5px]`}
+              } max-w-[480px] w-[100%] h-[56px] shadow-[0px_2px_9px_0px_#0000000E] flex items-center justify-center pl-[32px] rounded-[5px]  max-[600px]:max-w-[100%]`}
             >
               <div className="flex w-[100%]  gap-[24px] ">
                 <img src={search} alt="" />
                 <input
                   onChange={TakeValue}
-                  className={` outline-none text-[14px] font-[600] ${
+                  className={` outline-none text-[14px] font-[600]  max-[600px]:text-[12px] ${
                     darkmode ? "text-[#fff]" : "text-[#848484]"
                   }`}
                   type="text"
@@ -114,7 +114,7 @@ function Main() {
               } relative flex max-w-[200px] w-[100%] h-[56px]  items-center justify-between  shadow-[0px_2px_9px_0px_#0000000E] rounded-[5px] px-[23px]`}
             >
               <p
-                className={`text-[14px] leading-[20px] font-[600] ${
+                className={`text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
                   darkmode ? "text-[#fff]" : " text-[#111517]"
                 }`}
               >
@@ -137,7 +137,7 @@ function Main() {
                   <>
                     <p
                       onClick={AfricaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600] ${
+                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
                         darkmode ? "text-[#fff]" : "text-[#111517]"
                       }`}
                     >
@@ -145,7 +145,7 @@ function Main() {
                     </p>
                     <p
                       onClick={AmericaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600] ${
+                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
                         darkmode ? "text-[#fff]" : "text-[#111517]"
                       }`}
                     >
@@ -153,7 +153,7 @@ function Main() {
                     </p>
                     <p
                       onClick={AsiaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600] ${
+                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
                         darkmode ? "text-[#fff]" : "text-[#111517]"
                       }`}
                     >
@@ -161,7 +161,7 @@ function Main() {
                     </p>
                     <p
                       onClick={EuropeClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600] ${
+                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
                         darkmode ? "text-[#fff]" : "text-[#111517]"
                       }`}
                     >
@@ -169,7 +169,7 @@ function Main() {
                     </p>
                     <p
                       onClick={OceaniaClick}
-                      className={`cursor-pointer text-[14px] leading-[20px] font-[600] ${
+                      className={`cursor-pointer text-[14px] leading-[20px] font-[600]  max-[600px]:text-[12px] ${
                         darkmode ? "text-[#fff]" : "text-[#111517]"
                       }`}
                     >
@@ -180,7 +180,7 @@ function Main() {
               </div>
             </div>
           </div>
-          <div className="max-w-[1280px] w-[100%] flex flex-wrap mt-[50px] gap-[74px]">
+          <div className="max-w-[1280px] w-[100%] gap-[70px]   mt-[50px] flex flex-wrap justify-center">
             {information.map((country, key) => (
               <div
                 onClick={() =>
@@ -208,7 +208,7 @@ function Main() {
                   >
                     {country.name.common}
                   </p>
-                  <div className="flex flex-col mt-[16px] gap-[8px] mb-[46px]">
+                  <div className="flex flex-col mt-[16px] gap-[8px] mb-[46px] max-w-[235px]">
                     <p
                       className={`text-[14px] leading-[16px] font-[600] ${
                         darkmode ? "text-[#fff]" : "text-[#111517]"
